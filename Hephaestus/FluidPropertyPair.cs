@@ -12,7 +12,8 @@ namespace Hephaestus
 		{
 			{"Kerapatan & Entropi", new Tuple<string, string>("Kerapatan (kg/m3)", "Entropi (kJ/kg K)") },
 			{"Tekanan & Suhu", new Tuple<string, string>("Tekanan (kPa)", "Suhu (C)") },
-			{"Kualitas uap & Suhu", new Tuple<string, string>("Kualitas Uap", "Suhu (C)")}
+			{"Kualitas uap & Suhu", new Tuple<string, string>("Kualitas Uap", "Suhu (C)")},
+			{"Tekanan & Entropi", new Tuple<string, string>("Tekanan (kPa)", "Entropi spesifik (kJ/kgK)")},
 		};
 	}
 }

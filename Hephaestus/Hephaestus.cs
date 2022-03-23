@@ -11,9 +11,9 @@ namespace Hephaestus
 
 		private void Form1_Load()
 		{
-			foreach(string fluid in FluidFactory.FluidListKeys)
+			foreach (SharpFluids.FluidList fluid in (SharpFluids.FluidList[])Enum.GetValues(typeof(SharpFluids.FluidList)))
 			{
-				_ = fluidNameBox.Items.Add(fluid);
+				_ = fluidNameBox.Items.Add(fluid.ToString());
 			}
 			foreach(string fluidProps in FluidPropertyPair.propertiesTextField.Keys)
 			{
@@ -23,39 +23,49 @@ namespace Hephaestus
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			string workingFluidName = fluidNameBox.Text;
-			SharpFluids.Fluid? workingfluid = FluidFactory.Create(workingFluidName);
-			if (workingfluid is null)
+			if (fluidNameBox.SelectedIndex == -1)
 			{
-				_ = MessageBox.Show("Pilih fluida kerja");
+				_ = MessageBox.Show("Choose working fluid");
 				return;
 			}
+			SharpFluids.Fluid workingfluid = new((SharpFluids.FluidList)fluidNameBox.SelectedIndex);
 
-			string inputPropType = propType.Text;
-			switch (inputPropType)
+			if(propType.SelectedIndex == -1)
+			{
+				_ = MessageBox.Show("Choose property pair");
+				return ;
+			}
+
+			switch (propType.Text)
 			{
 				case "Kerapatan & Entropi":
 					workingfluid.UpdateDS(
-						EngineeringUnits.Density.FromKilogramPerCubicMeter(double.Parse(firstValProp.Text)),
+						EngineeringUnits.Density.FromKilogramPerCubicMeter(double.Parse(firstPropVal.Text)),
 						EngineeringUnits.SpecificEntropy.FromKilojoulePerKilogramKelvin(double.Parse(secondPropVal.Text)));
 					break;
 				case "Tekanan & Suhu":
 					workingfluid.UpdatePT(
-						EngineeringUnits.Pressure.FromKilopascal(double.Parse(firstValProp.Text)),	
+						EngineeringUnits.Pressure.FromKilopascal(double.Parse(firstPropVal.Text)),	
 						EngineeringUnits.Temperature.FromDegreesCelsius(double.Parse(secondPropVal.Text))
 						);
 					break;
 				case "Kualitas uap & Suhu":
-					workingfluid.UpdateXT(double.Parse(firstValProp.Text),
+					workingfluid.UpdateXT(double.Parse(firstPropVal.Text),
 						EngineeringUnits.Temperature.FromDegreesCelsius(double.Parse(secondPropVal.Text)));
 					break;
+				case "Tekanan & Entropi":
+					workingfluid.UpdatePS(
+						EngineeringUnits.Pressure.FromKilopascal(double.Parse(firstPropVal.Text)),
+						EngineeringUnits.SpecificEntropy.FromKilojoulePerKilogramKelvin(double.Parse(secondPropVal.Text))
+						);
+					break ;
 				default:
 					_ = MessageBox.Show("Pilih pasangan properti");
 					return;
 			}
 
 			pressureValue.Text =  workingfluid.Pressure.ToUnit(EngineeringUnits.Units.PressureUnit.Kilopascal).ToString();
-			temperatureValue.Text = workingfluid.Temperature.ToString();
+			temperatureValue.Text = workingfluid.Temperature.ToUnit(EngineeringUnits.Units.TemperatureUnit.DegreeCelsius).ToString();
 			enthalpyVal.Text = workingfluid.Enthalpy.ToUnit(EngineeringUnits.Units.SpecificEnergyUnit.KilojoulePerKilogram).ToString();
 			entropyValue.Text = workingfluid.Entropy.ToUnit(EngineeringUnits.Units.SpecificEntropyUnit.KilojoulePerKilogramKelvin).ToString();
 			densityValue.Text = workingfluid.Density.ToString();
