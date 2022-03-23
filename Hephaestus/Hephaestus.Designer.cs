@@ -100,7 +100,7 @@
 			this.fluidNameBox.FormattingEnabled = true;
 			this.fluidNameBox.Location = new System.Drawing.Point(163, 43);
 			this.fluidNameBox.Name = "fluidNameBox";
-			this.fluidNameBox.Size = new System.Drawing.Size(221, 33);
+			this.fluidNameBox.Size = new System.Drawing.Size(276, 33);
 			this.fluidNameBox.TabIndex = 10;
 			this.fluidNameBox.SelectedIndexChanged += new System.EventHandler(this.fluidNameBox_SelectedIndexChanged);
 			// 
@@ -110,7 +110,7 @@
 			this.propType.FormattingEnabled = true;
 			this.propType.Location = new System.Drawing.Point(163, 81);
 			this.propType.Name = "propType";
-			this.propType.Size = new System.Drawing.Size(221, 33);
+			this.propType.Size = new System.Drawing.Size(276, 33);
 			this.propType.TabIndex = 11;
 			this.propType.SelectedIndexChanged += new System.EventHandler(this.propType_SelectedIndexChanged);
 			// 
@@ -118,7 +118,7 @@
 			// 
 			this.secondPropVal.Location = new System.Drawing.Point(234, 212);
 			this.secondPropVal.Name = "secondPropVal";
-			this.secondPropVal.Size = new System.Drawing.Size(150, 31);
+			this.secondPropVal.Size = new System.Drawing.Size(205, 31);
 			this.secondPropVal.TabIndex = 12;
 			// 
 			// enthalpyVal
@@ -149,7 +149,7 @@
 			this.groupBox1.Size = new System.Drawing.Size(579, 206);
 			this.groupBox1.TabIndex = 17;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Nilai Properti";
+			this.groupBox1.Text = "Property Value";
 			// 
 			// vaporQuality
 			// 
@@ -273,7 +273,7 @@
 			// 
 			this.firstPropVal.Location = new System.Drawing.Point(234, 170);
 			this.firstPropVal.Name = "firstPropVal";
-			this.firstPropVal.Size = new System.Drawing.Size(150, 31);
+			this.firstPropVal.Size = new System.Drawing.Size(205, 31);
 			this.firstPropVal.TabIndex = 14;
 			this.firstPropVal.TextChanged += new System.EventHandler(this.firstValProp_TextChanged);
 			// 
@@ -304,7 +304,7 @@
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.calcbutton);
 			this.Name = "Hephaestus";
-			this.Text = "Kalkulator Properti Fluida";
+			this.Text = "Fluid Property Calculator";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);

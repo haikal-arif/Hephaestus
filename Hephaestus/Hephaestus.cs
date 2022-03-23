@@ -15,9 +15,9 @@ namespace Hephaestus
 			{
 				_ = fluidNameBox.Items.Add(fluid.ToString());
 			}
-			foreach(string fluidProps in FluidPropertyPair.propertiesTextField.Keys)
+			foreach (var fluidProps in FluidPropertyPair.propertyPair)
 			{
-				_ = propType.Items.Add(fluidProps);
+				_ = propType.Items.Add(fluidProps.Item1);
 			}
 		}
 
@@ -28,42 +28,25 @@ namespace Hephaestus
 				_ = MessageBox.Show("Choose working fluid");
 				return;
 			}
-			SharpFluids.Fluid workingfluid = new((SharpFluids.FluidList)fluidNameBox.SelectedIndex);
-
+			
 			if(propType.SelectedIndex == -1)
 			{
 				_ = MessageBox.Show("Choose property pair");
 				return ;
 			}
+			
+			SharpFluids.Fluid workingfluid = new((SharpFluids.FluidList)fluidNameBox.SelectedIndex);
+			double firstVal;
+			double secondVal;
 
-			switch (propType.Text)
+			if(!double.TryParse(firstPropVal.Text,out firstVal) || !double.TryParse(secondPropVal.Text, out secondVal))
 			{
-				case "Kerapatan & Entropi":
-					workingfluid.UpdateDS(
-						EngineeringUnits.Density.FromKilogramPerCubicMeter(double.Parse(firstPropVal.Text)),
-						EngineeringUnits.SpecificEntropy.FromKilojoulePerKilogramKelvin(double.Parse(secondPropVal.Text)));
-					break;
-				case "Tekanan & Suhu":
-					workingfluid.UpdatePT(
-						EngineeringUnits.Pressure.FromKilopascal(double.Parse(firstPropVal.Text)),	
-						EngineeringUnits.Temperature.FromDegreesCelsius(double.Parse(secondPropVal.Text))
-						);
-					break;
-				case "Kualitas uap & Suhu":
-					workingfluid.UpdateXT(double.Parse(firstPropVal.Text),
-						EngineeringUnits.Temperature.FromDegreesCelsius(double.Parse(secondPropVal.Text)));
-					break;
-				case "Tekanan & Entropi":
-					workingfluid.UpdatePS(
-						EngineeringUnits.Pressure.FromKilopascal(double.Parse(firstPropVal.Text)),
-						EngineeringUnits.SpecificEntropy.FromKilojoulePerKilogramKelvin(double.Parse(secondPropVal.Text))
-						);
-					break ;
-				default:
-					_ = MessageBox.Show("Pilih pasangan properti");
-					return;
+				_ = MessageBox.Show("Input invalid, please input valid number value");
+				return;
 			}
 
+			FluidPropertyPair.UpdateProperty(workingfluid, propType.SelectedIndex, firstVal, secondVal);
+			
 			pressureValue.Text =  workingfluid.Pressure.ToUnit(EngineeringUnits.Units.PressureUnit.Kilopascal).ToString();
 			temperatureValue.Text = workingfluid.Temperature.ToUnit(EngineeringUnits.Units.TemperatureUnit.DegreeCelsius).ToString();
 			enthalpyVal.Text = workingfluid.Enthalpy.ToUnit(EngineeringUnits.Units.SpecificEnergyUnit.KilojoulePerKilogram).ToString();
@@ -91,8 +74,8 @@ namespace Hephaestus
 
 		private void propType_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			firstPropTextField.Text = FluidPropertyPair.propertiesTextField[propType.Text].Item1;
-			secondPropTextField.Text = FluidPropertyPair.propertiesTextField[propType.Text].Item2;
+			firstPropTextField.Text = FluidPropertyPair.propertyPair[propType.SelectedIndex].Item2;
+			secondPropTextField.Text = FluidPropertyPair.propertyPair[propType.SelectedIndex].Item3;
 		}
 
 		private void firstValProp_TextChanged(object sender, EventArgs e)
