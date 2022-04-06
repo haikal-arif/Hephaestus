@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32002.185
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hephaestus", "Hephaestus\Hephaestus.csproj", "{337FD987-1B3F-45BE-82CD-668297FDAB86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hephaestus", "Hephaestus\Hephaestus.csproj", "{337FD987-1B3F-45BE-82CD-668297FDAB86}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{4ECE165E-B954-4A74-B7DA-92C564595530}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{F20A1159-29FD-4279-AB68-F800FD4C7EED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,12 @@ Global
 		{337FD987-1B3F-45BE-82CD-668297FDAB86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{337FD987-1B3F-45BE-82CD-668297FDAB86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{337FD987-1B3F-45BE-82CD-668297FDAB86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECE165E-B954-4A74-B7DA-92C564595530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECE165E-B954-4A74-B7DA-92C564595530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECE165E-B954-4A74-B7DA-92C564595530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECE165E-B954-4A74-B7DA-92C564595530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F20A1159-29FD-4279-AB68-F800FD4C7EED}.Debug|Any CPU.ActiveCfg = Debug
+		{F20A1159-29FD-4279-AB68-F800FD4C7EED}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
