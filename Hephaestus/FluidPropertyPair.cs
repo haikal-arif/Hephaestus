@@ -11,7 +11,7 @@ namespace Hephaestus
 {
 	using TDDD = Tuple<Delegate, Delegate, Delegate>;
 	using TSSS = Tuple<string, string, string>;
-	internal class FluidPropertyPair
+	public class FluidPropertyPair
 	{
 		public static TSSS[] propertyPair =
 		{
@@ -19,6 +19,7 @@ namespace Hephaestus
 			new TSSS("Pressure & Temperature", "Pressure (kPa)", "Temperature (°C)"),
 			new TSSS("Vapor quality & Temperature", "Quality (0-1)", "Temperature (°C)"),
 			new TSSS("Pressure & Entropy", "Pressure (kPa)", "Entropy (kJ/kgK)"),
+			new TSSS("Pressure & Vapor Quality", "Pressure (kPa)", "Quality (0-1)"),
 
 		};
 
@@ -28,8 +29,9 @@ namespace Hephaestus
 			{
 				{new TDDD( workingFluid.UpdateDS, Density.FromKilogramPerCubicMeter, SpecificEntropy.FromKilojoulePerKilogramKelvin) },
 				{new TDDD( workingFluid.UpdatePT, Pressure.FromKilopascal, Temperature.FromDegreesCelsius) },
-				{new TDDD( workingFluid.UpdateXT, (double x) => {return x; }, Temperature.FromDegreesCelsius)},
+				{new TDDD( workingFluid.UpdateXT, (double x) => {return Math.Clamp(x, 0, 1); }, Temperature.FromDegreesCelsius)},
 				{new TDDD( workingFluid.UpdatePS, Pressure.FromKilopascal, SpecificEntropy.FromKilojoulePerKilogramKelvin)},
+				{new TDDD( workingFluid.UpdatePX, Pressure.FromKilopascal, (double x) => {return Math.Clamp(x, 0, 1); } )}
 			};
 
 			var prop1 = propertiesTextField[propertyIndex].Item2.DynamicInvoke(val1);

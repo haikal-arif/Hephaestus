@@ -46,9 +46,9 @@ namespace Hephaestus
 			}
 
 			FluidPropertyPair.UpdateProperty(workingfluid, propType.SelectedIndex, firstVal, secondVal);
-			
-			pressureValue.Text =  workingfluid.Pressure.ToUnit(EngineeringUnits.Units.PressureUnit.Kilopascal).ToString();
-			temperatureValue.Text = workingfluid.Temperature.ToUnit(EngineeringUnits.Units.TemperatureUnit.DegreeCelsius).ToString();
+
+			pressureValue.Text = String.Format($"{workingfluid.Pressure.Kilopascal:0.##} kPa");
+			temperatureValue.Text = String.Format($"{workingfluid.Temperature.DegreesCelsius:0.##} °C") ;
 			enthalpyVal.Text = workingfluid.Enthalpy.ToUnit(EngineeringUnits.Units.SpecificEnergyUnit.KilojoulePerKilogram).ToString();
 			entropyValue.Text = workingfluid.Entropy.ToUnit(EngineeringUnits.Units.SpecificEntropyUnit.KilojoulePerKilogramKelvin).ToString();
 			densityValue.Text = workingfluid.Density.ToString();
@@ -81,6 +81,22 @@ namespace Hephaestus
 		private void firstValProp_TextChanged(object sender, EventArgs e)
 		{
 
+		}
+
+		private void pressureValue_Click(object sender, EventArgs e)
+		{
+			pressureValue.Focus();
+		}
+
+		private void Hephaestus_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void Hephaestus_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (label1.ContainsFocus && e.Control && e.KeyCode == Keys.C)
+				Clipboard.SetText(label1.Text);
 		}
 	}
 }

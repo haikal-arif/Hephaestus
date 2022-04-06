@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharpFluids" Version="3.0.264" />
+    <PackageReference Include="SharpFluids" Version="3.0.266" />
   </ItemGroup>
 
 </Project>
