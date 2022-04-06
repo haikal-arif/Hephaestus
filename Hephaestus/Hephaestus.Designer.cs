@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Hephaestus));
 			this.densityTextField = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.calcbutton = new System.Windows.Forms.Button();
@@ -98,7 +99,7 @@
 			// 
 			this.fluidNameBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.fluidNameBox.FormattingEnabled = true;
-			this.fluidNameBox.Location = new System.Drawing.Point(163, 43);
+			this.fluidNameBox.Location = new System.Drawing.Point(163, 44);
 			this.fluidNameBox.Name = "fluidNameBox";
 			this.fluidNameBox.Size = new System.Drawing.Size(276, 33);
 			this.fluidNameBox.TabIndex = 10;
@@ -177,6 +178,7 @@
 			this.pressureValue.Size = new System.Drawing.Size(39, 25);
 			this.pressureValue.TabIndex = 18;
 			this.pressureValue.Text = "kPa";
+			this.pressureValue.Click += new System.EventHandler(this.pressureValue_Click);
 			// 
 			// entropyValue
 			// 
@@ -303,8 +305,11 @@
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.calcbutton);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.KeyPreview = true;
 			this.Name = "Hephaestus";
 			this.Text = "Fluid Property Calculator";
+			this.Load += new System.EventHandler(this.Hephaestus_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
